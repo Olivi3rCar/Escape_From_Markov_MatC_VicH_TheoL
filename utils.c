@@ -54,3 +54,13 @@ adjacency_list readGraph (const char * filename) {
     fclose(file);
     return new_list;
 }
+
+void drawGraph (const char * filename, adjacency_list graph) {
+    FILE *file = fopen(filename, "w");
+    if (!file) {
+        perror("Could not open file for writing");
+        exit(EXIT_FAILURE);
+    }
+
+
+}
