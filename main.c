@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "chained.h"
+#include "utils.h"
 
 int main() {
     p_adjlist test_adj = createAdjList(3);
@@ -7,6 +8,8 @@ int main() {
         addCell(test_adj->listarray[i], 1, (float)i/2);
         addCell(test_adj->listarray[i], 2, (float)i/2);
     }
+
+    p_adjlist test2 = createAdjList(3);
 
     displayAdjList(*test_adj);
 
