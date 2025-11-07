@@ -142,22 +142,23 @@ p_adjlist readGraph (const char * filename) {
     }
 
     fclose(file);
+    printf("File read successfully\n");
     return new_list;
 }
 
 void drawGraph (const char * filename) {
     FILE *input = fopen(filename, "r");
+    FILE *output = fopen("../data/ariel.txt", "w");
 
-    FILE *output = fopen("ariel.txt", "w");
     if (!input) {
         perror("Could not open the file for reading");
         exit(EXIT_FAILURE);
     }
-
     if (!output) {
         perror("Could not open/create the file for writing");
         exit(EXIT_FAILURE);
     }
+
 
     fprintf(output, "---\n"
                         "config:\n"
@@ -166,13 +167,17 @@ void drawGraph (const char * filename) {
                         "    look: neo\n"
                         "---\n\n"
                         "flowchart LR\n");
+
+
     p_adjlist list = readGraph(filename);
 
+    ///Writing all the differents nodes
     for (int i = 0; i < list->len; i++) {
         fprintf(output, "%s((%d))\n",getID(i+1),i+1);
     }
     fprintf(output, "\n");
 
+    ///Linking the nodes
     for (int i = 0; i < list->len; i++) {
         p_cell tmp = list->listarray[i]->head;
         while (tmp!=NULL) {
@@ -181,8 +186,10 @@ void drawGraph (const char * filename) {
             tmp = tmp->next;
         }
     }
+
     fclose(input);
     fclose(output);
     free(list);
+    printf("The file has been successfully outputed here: Escape_From_Markov_MatC_VicH_TheoL/data/ariel.txt\n");
     return;
 }
