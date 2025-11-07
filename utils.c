@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "chained.h"
 
 #include "utils.h"
 
@@ -26,4 +27,21 @@ static char *getID(int i)
     buffer[index] = '\0';
 
     return buffer;
+}
+
+void isMarkov(t_adjlist Markov){
+    for (int i = 0; i < Markov.len; i++) {
+        p_cell tmp = Markov.listarray[i]->head;
+        float total = 0;
+        while (tmp!=NULL) {
+            total += tmp->proba;
+            tmp = tmp->next;
+        }
+        if (total>1.0 || total<0.99) {
+            printf("The graph is not a Markov graph \nthe sum of the probabilities of vertex %d is %f\n", i,total);
+            return;
+        }
+    }
+    printf("The graph is a Markov graph\n");
+    return;
 }
