@@ -12,12 +12,6 @@ int main() {
 
     freeAdjList(test_adj);
 
-    printf("This project is still under construction...\n"
-           "      ____\n"
-           " ____|    \\\n"
-           "(____|     `._____\n"
-           " ____|       _|___\n"
-           "(____|     .'\n"
-           "     |____/");
+    printf("The project is");
     return 0;
 }
