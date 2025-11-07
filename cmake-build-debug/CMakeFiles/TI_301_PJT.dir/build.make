@@ -82,30 +82,30 @@ CMakeFiles/TI_301_PJT.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/TI_301_PJT.dir/main.c.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\main.c -o CMakeFiles\TI_301_PJT.dir\main.c.s
 
-CMakeFiles/TI_301_PJT.dir/utils.c.obj: CMakeFiles/TI_301_PJT.dir/flags.make
-CMakeFiles/TI_301_PJT.dir/utils.c.obj: C:/Users/victo/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/utils.c
-CMakeFiles/TI_301_PJT.dir/utils.c.obj: CMakeFiles/TI_301_PJT.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/TI_301_PJT.dir/utils.c.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/TI_301_PJT.dir/utils.c.obj -MF CMakeFiles\TI_301_PJT.dir\utils.c.obj.d -o CMakeFiles\TI_301_PJT.dir\utils.c.obj -c C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\utils.c
+CMakeFiles/TI_301_PJT.dir/chained.c.obj: CMakeFiles/TI_301_PJT.dir/flags.make
+CMakeFiles/TI_301_PJT.dir/chained.c.obj: C:/Users/victo/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/chained.c
+CMakeFiles/TI_301_PJT.dir/chained.c.obj: CMakeFiles/TI_301_PJT.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/TI_301_PJT.dir/chained.c.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/TI_301_PJT.dir/chained.c.obj -MF CMakeFiles\TI_301_PJT.dir\chained.c.obj.d -o CMakeFiles\TI_301_PJT.dir\chained.c.obj -c C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\chained.c
 
-CMakeFiles/TI_301_PJT.dir/utils.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/TI_301_PJT.dir/utils.c.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\utils.c > CMakeFiles\TI_301_PJT.dir\utils.c.i
+CMakeFiles/TI_301_PJT.dir/chained.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/TI_301_PJT.dir/chained.c.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\chained.c > CMakeFiles\TI_301_PJT.dir\chained.c.i
 
-CMakeFiles/TI_301_PJT.dir/utils.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/TI_301_PJT.dir/utils.c.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\utils.c -o CMakeFiles\TI_301_PJT.dir\utils.c.s
+CMakeFiles/TI_301_PJT.dir/chained.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/TI_301_PJT.dir/chained.c.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.4\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\chained.c -o CMakeFiles\TI_301_PJT.dir\chained.c.s
 
 # Object files for target TI_301_PJT
 TI_301_PJT_OBJECTS = \
 "CMakeFiles/TI_301_PJT.dir/main.c.obj" \
-"CMakeFiles/TI_301_PJT.dir/utils.c.obj"
+"CMakeFiles/TI_301_PJT.dir/chained.c.obj"
 
 # External object files for target TI_301_PJT
 TI_301_PJT_EXTERNAL_OBJECTS =
 
 TI_301_PJT.exe: CMakeFiles/TI_301_PJT.dir/main.c.obj
-TI_301_PJT.exe: CMakeFiles/TI_301_PJT.dir/utils.c.obj
+TI_301_PJT.exe: CMakeFiles/TI_301_PJT.dir/chained.c.obj
 TI_301_PJT.exe: CMakeFiles/TI_301_PJT.dir/build.make
 TI_301_PJT.exe: CMakeFiles/TI_301_PJT.dir/linkLibs.rsp
 TI_301_PJT.exe: CMakeFiles/TI_301_PJT.dir/objects1.rsp

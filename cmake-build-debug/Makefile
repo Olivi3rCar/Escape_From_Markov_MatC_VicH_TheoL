@@ -128,6 +128,30 @@ TI_301_PJT/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/build
 .PHONY : TI_301_PJT/fast
 
+chained.obj: chained.c.obj
+.PHONY : chained.obj
+
+# target to build an object file
+chained.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.obj
+.PHONY : chained.c.obj
+
+chained.i: chained.c.i
+.PHONY : chained.i
+
+# target to preprocess a source file
+chained.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.i
+.PHONY : chained.c.i
+
+chained.s: chained.c.s
+.PHONY : chained.s
+
+# target to generate assembly for a file
+chained.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.s
+.PHONY : chained.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -152,30 +176,6 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/main.c.s
 .PHONY : main.c.s
 
-utils.obj: utils.c.obj
-.PHONY : utils.obj
-
-# target to build an object file
-utils.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/utils.c.obj
-.PHONY : utils.c.obj
-
-utils.i: utils.c.i
-.PHONY : utils.i
-
-# target to preprocess a source file
-utils.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/utils.c.i
-.PHONY : utils.c.i
-
-utils.s: utils.c.s
-.PHONY : utils.s
-
-# target to generate assembly for a file
-utils.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/utils.c.s
-.PHONY : utils.c.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -185,12 +185,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TI_301_PJT
+	@echo ... chained.obj
+	@echo ... chained.i
+	@echo ... chained.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... utils.obj
-	@echo ... utils.i
-	@echo ... utils.s
 .PHONY : help
 
 
