@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "chained.h"
+#include "utils.h"
 
 int main() {
     p_adjlist test_adj = createAdjList(3);
@@ -9,9 +10,10 @@ int main() {
     }
 
     displayAdjList(*test_adj);
-
+    isMarkov(*test_adj);
     freeAdjList(test_adj);
 
     printf("The project is");
     return 0;
 }
+
