@@ -1,7 +1,7 @@
 #ifndef __UTILS_H__
 #define __UTILS_H__
+#include <stdio.h>
 
-adjacency_list readGraph (const char * filename);
+void isMarkov(adjency_list);
 
-void drawGraph (const char * filename, adjacency_list graph);
 #endif

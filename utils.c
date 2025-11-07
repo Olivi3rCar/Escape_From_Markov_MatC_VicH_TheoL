@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "chained.h"
 
 #include "utils.h"
 
@@ -28,39 +29,19 @@ static char *getID(int i)
     return buffer;
 }
 
-
-adjacency_list readGraph (const char * filename) {
-    FILE *file = fopen(filename, "r");
-    int nbvert, star, end;
-    float proba;
-    adjacency_list new_list;
-
-    if (!file) {
-        perror("Could not open file for reading");
-        exit(EXIT_FAILURE);
+void isMarkov(t_adjlist Markov){
+    for (int i = 0; i < Markov.len; i++) {
+        p_cell tmp = Markov.listarray[i]->head;
+        float total = 0;
+        while (tmp!=NULL) {
+            total += tmp->proba;
+            tmp = tmp->next;
+        }
+        if (total>1.0 || total<0.99) {
+            printf("The graph is not a Markov graph \nthe sum of the probabilities of vertex %d is %f\n", i,total);
+            return;
+        }
     }
-
-    if (fscanf(file, "%d", &nbvert) != 1) {
-        perror("Could not read the number of vertices");
-        exit(EXIT_FAILURE);
-    }
-
-    new_list = createList(nbvert);
-
-    while (fscanf(file , "%d %d %d", &star, &end, &proba) == 3) {
-        addCell(new_list, end, proba);
-    }
-
-    fclose(file);
-    return new_list;
-}
-
-void drawGraph (const char * filename, adjacency_list graph) {
-    FILE *file = fopen(filename, "w");
-    if (!file) {
-        perror("Could not open file for writing");
-        exit(EXIT_FAILURE);
-    }
-
-
+    printf("The graph is a Markov graph\n");
+    return;
 }
