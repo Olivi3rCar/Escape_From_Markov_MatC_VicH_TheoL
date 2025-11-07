@@ -30,11 +30,10 @@ static char *getID(int i)
 }
 
 
-adjacency_list readGraph (const char * filename) {
+p_adjlist readGraph (const char * filename) {
     FILE *file = fopen(filename, "r");
     int nbvert, star, end;
     float proba;
-    adjacency_list new_list;
 
     if (!file) {
         perror("Could not open file for reading");
@@ -46,17 +45,17 @@ adjacency_list readGraph (const char * filename) {
         exit(EXIT_FAILURE);
     }
 
-    new_list = createList(nbvert);
+    p_adjlist new_list = createAdjList(nbvert);
 
     while (fscanf(file , "%d %d %d", &star, &end, &proba) == 3) {
-        addCell(new_list, end, proba);
+        addCell(new_list->listarray[star], end, proba);
     }
 
     fclose(file);
     return new_list;
 }
 
-void drawGraph (const char * filename, adjacency_list graph) {
+void drawGraph (const char * filename, p_adjlist graph) {
     FILE *file = fopen(filename, "w");
     if (!file) {
         perror("Could not open file for writing");
@@ -65,6 +64,7 @@ void drawGraph (const char * filename, adjacency_list graph) {
 
 
 }
+
 void isMarkov(t_adjlist Markov){
     for (int i = 0; i < Markov.len; i++) {
         p_cell tmp = Markov.listarray[i]->head;
