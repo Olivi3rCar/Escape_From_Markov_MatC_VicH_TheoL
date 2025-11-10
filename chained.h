@@ -7,6 +7,8 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 
 /// s_cell is the base cell element for a linked list
 ///
@@ -99,5 +101,18 @@ void displayAdjList(t_adjlist a);
 ///
 /// \param a Pointer to the AdjList to free
 void freeAdjList(p_adjlist a);
+
+/// Checks if an adjacency list is a Markov Chain or not, and outputs what's wrong
+void isMarkov(t_adjlist);
+
+/// Reads a graph form a text file
+/// @param filename
+/// @return the list corresponding to the text
+p_adjlist readGraph (const char * filename);
+
+/// writes a text file to represent a graph, inputed via a text file too
+/// @param filename
+void drawGraph (const char * filename);
+
 
 #endif //INC_2526_TI301_PJT_CHAINED_H

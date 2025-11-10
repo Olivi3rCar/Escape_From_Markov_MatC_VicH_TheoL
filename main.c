@@ -1,26 +1,24 @@
 #include <stdio.h>
 #include "chained.h"
-#include "utils.h"
 
 int main() {
-    p_adjlist test_adj = createAdjList(3);
-    for(int i = 0; i < 3; i++) {
-        addCell(test_adj->listarray[i], 1, (float)i/2);
-        addCell(test_adj->listarray[i], 2, (float)i/2);
-    }
 
-    p_adjlist test2 = createAdjList(3);
+    printf("Let's initialize the graph using a text file form the data directory\n");
+    p_adjlist new_adj = readGraph("../data/exemple3.txt");
+    printf("\n");
 
-    displayAdjList(*test_adj);
+    printf("Let's display the graph:\n");
+    displayAdjList(*new_adj);
+    printf("\n");
 
-    freeAdjList(test_adj);
+    printf("But is this matrix a Markov graph ? If not, why ?:\n");
+    isMarkov(*new_adj);
+    printf("\n");
 
-    printf("This project is still under hgdgqzfgdhzqdhv...\n"
-           "      ____\n"
-           " ____|    \\\n"
-           "(____|     `._____\n"
-           " ____|       _|___\n"
-           "(____|     .'\n"
-           "     |____/");
+    printf("Fine, now, create a file to display it in Mermaid:\n");
+    drawGraph("../data/exemple3.txt");
+
+
+    freeAdjList(new_adj);
     return 0;
 }

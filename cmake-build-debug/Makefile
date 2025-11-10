@@ -47,10 +47,10 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_The
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -176,30 +176,6 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/main.c.s
 .PHONY : main.c.s
 
-utils.obj: utils.c.obj
-.PHONY : utils.obj
-
-# target to build an object file
-utils.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/utils.c.obj
-.PHONY : utils.c.obj
-
-utils.i: utils.c.i
-.PHONY : utils.i
-
-# target to preprocess a source file
-utils.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/utils.c.i
-.PHONY : utils.c.i
-
-utils.s: utils.c.s
-.PHONY : utils.s
-
-# target to generate assembly for a file
-utils.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/utils.c.s
-.PHONY : utils.c.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -215,9 +191,6 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... utils.obj
-	@echo ... utils.i
-	@echo ... utils.s
 .PHONY : help
 
 

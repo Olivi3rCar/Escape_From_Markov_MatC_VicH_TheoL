@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL -B C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\cmake-build-debug
--- Configuring done (0.2s)
--- Generating done (0.1s)
+"C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "MinGW Makefiles" -S C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL -B C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_TheoL\cmake-build-debug
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
 -- Build files have been written to: C:/Users/victo/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/cmake-build-debug
