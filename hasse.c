@@ -24,7 +24,7 @@ p_tarjan_list create_tarjan_list(t_adjlist * adj_list){
 }
 
 p_link_array createTransitiveLinks(t_partition part){
-    // MATHIAS IL FAUT CREER UN TYPE QUI CONTIEN DEUX LINKS POUR LES LINKS LINKS THE SUN AAAAAH
+    // MATHIAS IL FAUT CREER UN TYPE QUI CONTIENT DEUX LINKS POUR LES LINKS LINKS THE SUN AAAAAH
     return;
 }
 
