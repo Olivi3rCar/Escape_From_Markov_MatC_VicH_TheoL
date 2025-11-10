@@ -23,6 +23,21 @@ t_tarjan_list * create_tarjan_list(t_adjlist * adj_list){
   return tarjan_list;
 }
 
+t_stack_tarjan * push(t_stack_cell *cell, t_stack_tarjan * stack){
+  if (stack->head == stack->tail){
+      stack->head = cell;
+      stack->tail = stack->head;
+  }
+
+}
+
+void parcours(t_tarjan_vertex * vertex, int num, t_stack_tarjan* stack, t_partition* partition){
+  vertex->number = num;
+  vertex->access = num;
+  num++;
+
+}
+
 
 //void removeTransitiveLinks(t_link_array *p_link_array)
 //{

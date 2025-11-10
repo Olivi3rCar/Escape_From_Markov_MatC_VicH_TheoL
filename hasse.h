@@ -32,11 +32,15 @@ typedef struct s_stack_cell{
   t_tarjan_list * next;
 } t_stack_cell;
 
-typedef struct s_stack_tarjan_vertex{
+typedef struct s_stack_tarjan{
   t_stack_cell * cells;
   t_stack_cell * head;
   t_stack_cell * tail;
-} t_stack_tarjan_vertex;
+} t_stack_tarjan;
+
+void parcours(t_tarjan_vertex * vertex, int num, t_stack_tarjan* stack, t_partition* partition);
+
+t_stack_tarjan * push(t_stack_cell *cell, t_stack_tarjan * stack);
 
 /**
  * @brief Creates a link array from the given partition and graph.
