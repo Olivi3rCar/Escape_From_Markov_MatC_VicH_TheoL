@@ -6,5 +6,6 @@ set(CMAKE_C_STANDARD 11)
 add_executable(TI_301_PJT
         main.c
         chained.c
-        chained.h)
+        chained.h
+        hasse.c)
 
