@@ -3,13 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#define MIN(i, j) (((i) < (j)) ? (i) : (j))
 #include "chained.h"
 
 typedef struct s_tarjan_vertex{
   int id;
   int number;
-  int access;
-  int bool;
+  int access_number;
+  int in_stack_bool;
   } t_tarjan_vertex;
 
 typedef struct s_tarjan_list{
@@ -18,7 +19,8 @@ typedef struct s_tarjan_list{
 
 typedef struct s_class{
   char * name;
-  t_tarjan_vertex * vertices;
+  t_tarjan_list * vertices;
+  int len;
 } t_class;
 
 typedef struct s_partition{
@@ -28,19 +30,20 @@ typedef struct s_partition{
 t_tarjan_list * create_tarjan_list(t_adjlist * adj_list);
 
 typedef struct s_stack_cell{
-  t_tarjan_list cell;
-  t_tarjan_list * next;
+  t_tarjan_vertex * cell;
+  struct s_stack_cell * next;
 } t_stack_cell;
 
 typedef struct s_stack_tarjan{
-  t_stack_cell * cells;
-  t_stack_cell * head;
-  t_stack_cell * tail;
+  t_stack_cell * top;
+  int logical_size;
+  int physical_size;
 } t_stack_tarjan;
 
-void parcours(t_tarjan_vertex * vertex, int num, t_stack_tarjan* stack, t_partition* partition);
+void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
+              t_partition* partition, t_adjlist* adj_list, t_tarjan_list* tarjan_list);
 
-t_stack_tarjan * push(t_stack_cell *cell, t_stack_tarjan * stack);
+t_stack_tarjan * push(t_tarjan_vertex *to_be_celled, t_stack_tarjan * stack);
 
 /**
  * @brief Creates a link array from the given partition and graph.
