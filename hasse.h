@@ -23,7 +23,8 @@ typedef struct s_class{
 
 typedef struct s_partition{
   t_class * classes;
-} t_partition;
+  int len;
+} t_partition, * p_partition;
 
 t_tarjan_list * create_tarjan_list(t_adjlist * adj_list);
 
