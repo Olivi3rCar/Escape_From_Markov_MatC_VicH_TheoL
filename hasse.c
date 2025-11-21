@@ -23,9 +23,55 @@ p_tarjan_list create_tarjan_list(t_adjlist * adj_list){
   return tarjan_list;
 }
 
-p_link_array createTransitiveLinks(t_partition part){
-    // MATHIAS IL FAUT CREER UN TYPE QUI CONTIENT DEUX LINKS POUR LES LINKS LINKS THE SUN AAAAAH
-    return;
+p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
+    // Allocate space for the linking arrat
+    p_class linkedVC = (p_class) malloc(vertices.len * sizeof(t_class) );
+    for (int i = 0; i < part.len; i++) {
+        // For each class in the partition
+        for (int j = 0; j < part.classes[i].len; i++) {
+            // For each vertex in that class
+            // We link the current vertex to the corresponding class
+            // in the newly created array. (the index of the element of the array
+            // corresponds to the id of the vertex)
+            linkedVC[part.classes[i].vertices[j].id] = part.classes[i];
+        }
+    }
+    return linkedVC;
+}
+
+p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
+    // Instantiation and allocation of the p_link_array
+    p_link arrLLL = (p_link) malloc(567 * sizeof(t_link));
+    p_link_array linkA = (p_link_array) malloc(sizeof(p_link_array));
+    linkA->arr = arrLLL; linkA->len = 0;
+
+    p_class linkedVC = link_vertex_to_class(vertices, part);
+    for (int i = 0; i < vertices.len; i++) {
+        // Ci is linkedVC[i]
+        t_class Ci = linkedVC[i];
+        // We instantiate through the adj clist of the vertex i
+        p_cell curr = vertices.listarray[i]->head;
+        while (curr != NULL) {
+            // Curr is vertex j; Cj is linkedVC[j]
+            t_class Cj = linkedVC[curr->arrival];
+            int v = 1; int kk = 0;
+            while (kk < linkA->len && v) {
+                // for each link in the p_link_array
+                // we check if the current link is already present
+                t_link currelt = linkA->arr[kk];
+                if (Ci.id==linkedVC[currelt.from].id && Cj.id==linkedVC[currelt.to].id) {
+                    v = 0;
+                }
+            }
+            // if not already present, att link to linkarrayyyyyrfers
+            if (v) {
+                linkA->arr[linkA->len].from = Ci.id;
+                linkA->arr[linkA->len].to = Cj.id;
+                linkA->len++;
+            }
+        }
+    }
+    return linkA;
 }
 
 void removeTransitiveLinks(p_link_array linkArray)
