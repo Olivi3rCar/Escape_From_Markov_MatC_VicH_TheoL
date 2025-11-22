@@ -5,7 +5,7 @@
 #include "chained.h"
 
 p_cell createCell(int arrVer, float prob){
-    p_cell newc = (p_cell) malloc(sizeof(p_cell));
+    p_cell newc = (p_cell) malloc(sizeof(t_cell));
     newc->arrival = arrVer;
     newc->proba = prob;
     newc->next = NULL;
@@ -17,7 +17,7 @@ void freeCell(p_cell c){
 }
 
 p_clist createCList(){
-    p_clist newl = (p_clist) malloc((sizeof(p_clist)));
+    p_clist newl = (p_clist) malloc((sizeof(t_clist)));
     newl->head = NULL;
     return newl;
 }
@@ -43,7 +43,7 @@ void displayCList(t_clist l){
 
 void freeCList(p_clist l){
     p_cell c = l->head, prev = c;
-    while (c != NULL) {c = c->next; free(prev); prev = c;}
+    while (c != NULL) {c = c->next; freeCell(prev); prev = c;}
     free(l);
 }
 
@@ -70,7 +70,7 @@ void displayAdjList(t_adjlist a){
 
 void freeAdjList(p_adjlist a){
     for (int i = 0; i < a->len; i ++) {
-        free(a->listarray[i]);
+        freeCList(a->listarray[i]);
     }
     free(a);
 }
