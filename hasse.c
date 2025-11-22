@@ -328,6 +328,6 @@ t_partition tarjan_algorithm(t_adjlist* adj_list){
       parcours(vertex, &num, stack, partition, adj_list, tarjan_list, &id);
     }
   }
-  printf("I'm ... done ???");
+  printf("I'm done");
   return *partition;
 }
