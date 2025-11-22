@@ -1,4 +1,5 @@
 #include "hasse.h"
+#include "chained.h"
 
 p_tarjan_list create_tarjan_list(t_adjlist * adj_list){
   t_tarjan_list * tarjan_list = malloc(sizeof(t_tarjan_list));
@@ -79,14 +80,14 @@ void removeTransitiveLinks(p_link_array linkArray)
     int i = 0;
     while (i < linkArray->log_size)
     {
-        t_link link1 = linkArray->links[i];
+        t_link link1 = linkArray->arr[i];
         int j = 0;
         int to_remove = 0;
         while (j < linkArray->log_size && !to_remove)
         {
             if (j != i)
             {
-                t_link link2 = linkArray->links[j];
+                t_link link2 = linkArray->arr[j];
                 if (link1.from == link2.from)
                 {
                     // look for a link from link2.to to link1.to
@@ -95,7 +96,7 @@ void removeTransitiveLinks(p_link_array linkArray)
                     {
                         if (k != j && k != i)
                         {
-                            t_link link3 = linkArray->links[k];
+                            t_link link3 = linkArray->arr[k];
                             if ((link3.from == link2.to) && (link3.to == link1.to))
                             {
                                 to_remove = 1;
@@ -110,8 +111,8 @@ void removeTransitiveLinks(p_link_array linkArray)
         if (to_remove)
         {
             // remove link1 by replacing it with the last link
-            p_link_array->links[i] = p_link_array->links[p_link_array->log_size - 1];
-            p_link_array->log_size--;
+            linkArray->arr[i] =  linkArray->arr[ linkArray->log_size - 1];
+             linkArray->log_size--;
         }
         else
         {
@@ -126,7 +127,7 @@ void freeTransitiveLinks(p_link_array linkArray){
 
 void drawHasse(t_partition part) {
 
-    FILE *output = fopen("../data/dusk.txt", "w");
+    FILE *output = fopen("../data/exemple_hasse1.txt", "w");
     if (!output) {
         perror("Could not open/create the file for writing");
         exit(EXIT_FAILURE);
@@ -142,7 +143,7 @@ void drawHasse(t_partition part) {
 
     ///Writing all the differents nodes
     for (int i = 0; i < part.len; i++) {
-        fprintf(output, "%s[%s]\n",getID(i+1),part.classes[i].name);
+        fprintf(output, "%s[%s]\n",getID(i+1),part.classes[i].id);
     }
     fprintf(output, "\n");
 

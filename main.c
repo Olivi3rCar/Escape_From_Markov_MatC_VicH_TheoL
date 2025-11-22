@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "chained.h"
+#include "hasse.h"
 
 int main() {
 
@@ -18,7 +19,15 @@ int main() {
     printf("Fine, now, create a file to display it in Mermaid:\n");
     drawGraph("../data/exemple3.txt");
 
+    /// Test of the Part 2 of II
+    /// creation of a Tarjan graph
+
+    p_tarjan_list troy = create_tarjan_list(new_adj);
+    //p_link_array part = createTransitiveLinks()
+
 
     freeAdjList(new_adj);
+
+
     return 0;
 }
