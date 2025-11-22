@@ -1,4 +1,5 @@
 #include "hasse.h"
+#include "chained.h"
 
 t_tarjan_list * create_filled_tarjan_list(const t_adjlist * adj_list){
   t_tarjan_list * tarjan_list = malloc(sizeof(t_tarjan_list));
@@ -28,16 +29,16 @@ t_tarjan_list * create_filled_tarjan_list(const t_adjlist * adj_list){
 }
 
 p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
-    // Allocate space for the linking arrat
+    // Allocate space for the linking array
     p_class linkedVC = (p_class) malloc(vertices.len * sizeof(t_class) );
-    for (int i = 0; i < part.len; i++) {
+    for (int i = 0; i < part.l_len; i++) {
         // For each class in the partition
-        for (int j = 0; j < part.classes[i].len; i++) {
+        for (int j = 0; j < part.classes[i]->len; i++) {
             // For each vertex in that class
             // We link the current vertex to the corresponding class
             // in the newly created array. (the index of the element of the array
             // corresponds to the id of the vertex)
-            linkedVC[part.classes[i].vertices[j].id] = part.classes[i];
+            linkedVC[part.classes[i][j].id] = *part.classes[i];
         }
     }
     return linkedVC;
@@ -45,8 +46,8 @@ p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
 
 p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
     // Instantiation and allocation of the p_link_array
-    p_link arrLLL = (p_link) malloc(567 * sizeof(t_link));
-    p_link_array linkA = (p_link_array) malloc(sizeof(p_link_array));
+    p_link arrLLL = malloc(567 * sizeof(t_link));
+    p_link_array linkA = malloc(sizeof(p_link_array));
     linkA->arr = arrLLL; linkA->len = 0;
 
     p_class linkedVC = link_vertex_to_class(vertices, part);
@@ -83,14 +84,14 @@ void removeTransitiveLinks(p_link_array linkArray)
     int i = 0;
     while (i < linkArray->log_size)
     {
-        t_link link1 = linkArray->links[i];
+        t_link link1 = linkArray->arr[i];
         int j = 0;
         int to_remove = 0;
         while (j < linkArray->log_size && !to_remove)
         {
             if (j != i)
             {
-                t_link link2 = linkArray->links[j];
+                t_link link2 = linkArray->arr[j];
                 if (link1.from == link2.from)
                 {
                     // look for a link from link2.to to link1.to
@@ -99,8 +100,8 @@ void removeTransitiveLinks(p_link_array linkArray)
                     {
                         if (k != j && k != i)
                         {
-                            t_link link3 = linkArray->links[k];
-                            if ((link3.from == link2.to) && (link3.to == link1.to))
+                            t_link link3 = linkArray->arr[k];
+                            if (link3.from == link2.to && link3.to == link1.to)
                             {
                                 to_remove = 1;
                             }
@@ -114,8 +115,8 @@ void removeTransitiveLinks(p_link_array linkArray)
         if (to_remove)
         {
             // remove link1 by replacing it with the last link
-            p_link_array->links[i] = p_link_array->links[p_link_array->log_size - 1];
-            p_link_array->log_size--;
+            linkArray->arr[i] = linkArray->arr[linkArray->log_size - 1];
+            linkArray->log_size--;
         }
         else
         {
@@ -125,40 +126,42 @@ void removeTransitiveLinks(p_link_array linkArray)
 }
 
 void freeTransitiveLinks(p_link_array linkArray){
+    free(linkArray);
     return;
 }
 
-void drawHasse(t_partition part) {
+// void drawHasse(t_partition part) {
+//
+//     FILE *output = fopen("../data/dusk.txt", "w");
+//     if (!output) {
+//         perror("Could not open/create the file for writing");
+//         exit(EXIT_FAILURE);
+//     }
+//
+//     fprintf(output, "---\n"
+//                     "config:\n"
+//                     "    layout: elk\n"
+//                     "    theme: neo\n"
+//                     "    look: neo\n"
+//                     "---\n\n"
+//                     "flowchart LR\n");
+//
+//     ///Writing all the differents nodes
+//     for (int i = 0; i < part.l_len; i++) {
+//         fprintf(output, "%s[%s]\n",getID(i+1),part.classes[i]->id);
+//     }
+//     fprintf(output, "\n");
+//
+//     ///Linking the nodes
+//     //p_link_array trLinks = createTransitiveLinks();
+//     //removeTransitiveLinks(trLinks);
+//     //for (truc) {machin dans output}
+//
+//     fclose(output);
+//     printf("The file has been successfully outputed here: Escape_From_Markov_MatC_VicH_TheoL/data/ariel.txt\n");
+// }
 
-    FILE *output = fopen("../data/dusk.txt", "w");
-    if (!output) {
-        perror("Could not open/create the file for writing");
-        exit(EXIT_FAILURE);
-    }
 
-    fprintf(output, "---\n"
-                    "config:\n"
-                    "    layout: elk\n"
-                    "    theme: neo\n"
-                    "    look: neo\n"
-                    "---\n\n"
-                    "flowchart LR\n");
-
-    ///Writing all the differents nodes
-    for (int i = 0; i < part.len; i++) {
-        fprintf(output, "%s[%s]\n",getID(i+1),part.classes[i].name);
-    }
-    fprintf(output, "\n");
-
-    ///Linking the nodes
-    //p_link_array trLinks = createTransitiveLinks();
-    //removeTransitiveLinks(trLinks);
-    //for (truc) {machin dans output}
-
-    fclose(output);
-    printf("The file has been successfully outputed here: Escape_From_Markov_MatC_VicH_TheoL/data/ariel.txt\n");
-    return;
-}
 t_class * create_class(const int edge_size) {
   t_class *new_class = malloc(sizeof *new_class);
   if (!new_class) {
@@ -290,51 +293,26 @@ void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
   }
   printf("Went through the while loop\n\n");
 
-  if (vertex->access_number == vertex->number) {
-    t_class *clazz = create_class(adj_list->len);
-    printf("Class created\n");
-    clazz->id = *id;
-    (*id)++;
+    if (vertex->access_number == vertex->number){
+        int i=0;
+        t_class * class = create_class(sizeof(tarjan_list->vertices[curr->arrival-1])/sizeof(t_tarjan_vertex));
+        class->id = *id;
+        (*id)++;
 
-    /* Pop until we get 'vertex' (checking pop() result each time) */
-    t_tarjan_vertex *w = pop(stack);
-    if (!w) {
-      fprintf(stderr, "pop returned NULL when starting SCC extraction\n");
-      /* cleanup */
-      free(clazz->list->vertices);
-      free(clazz->list);
-      free(clazz);
-      return;
+        t_tarjan_vertex *w = pop(stack);
+        w->in_stack_bool = 0;
+        class->list->vertices[i]=*w;
+        i++;
+
+        while(w!=vertex){
+            w = pop(stack);
+            w->in_stack_bool = 0;
+            class->list->vertices[i]=*w;
+            i++;
+        }
+        partition->classes[i]=class;
     }
-
-    while (1) {
-      w->in_stack_bool = 0;
-
-      if (clazz->list->list_l_len < clazz->list->list_p_len) {
-        clazz->list->vertices[clazz->list->list_l_len++] = *w;
-      } else {
-        fprintf(stderr, "ERROR: clazz capacity exceeded (this shouldn't happen)\n");
-        break;
-      }
-
-      if (w == vertex) break;
-
-      w = pop(stack);
-      if (!w) {
-        fprintf(stderr, "ERROR: stack underflow while extracting SCC\n");
-        break;
-      }
     }
-
-    /* append the class to the partition */
-    if (partition->l_len < partition->p_len) {
-      partition->classes[partition->l_len++] = clazz;
-    } else {
-      fprintf(stderr, "ERROR: partition full, cannot add class\n");
-      /* decide: free clazz or expand partition */
-    }
-  }
-}
 
 t_partition tarjan_algorithm(t_adjlist* adj_list){
   int num=0;
@@ -353,49 +331,3 @@ t_partition tarjan_algorithm(t_adjlist* adj_list){
   printf("I'm ... done ???");
   return *partition;
 }
-
-//void removeTransitiveLinks(t_link_array *p_link_array)
-//{
-//    int i = 0;
-//    while (i < p_link_array->log_size)
-//    {
-//        t_link link1 = p_link_array->links[i];
-//        int j = 0;
-//        int to_remove = 0;
-//        while (j < p_link_array->log_size && !to_remove)
-//        {
-//            if (j != i)
-//            {
-//                t_link link2 = p_link_array->links[j];
-//                if (link1.from == link2.from)
-//                {
-//                    // look for a link from link2.to to link1.to
-//                    int k = 0;
-//                    while (k < p_link_array->log_size && !to_remove)
-//                    {
-//                        if (k != j && k != i)
-//                        {
-//                            t_link link3 = p_link_array->links[k];
-//                            if ((link3.from == link2.to) && (link3.to == link1.to))
-//                            {
-//                                to_remove = 1;
-//                            }
-//                        }
-//                        k++;
-//                    }
-//                }
-//            }
-//            j++;
-//        }
-//        if (to_remove)
-//        {
-//            // remove link1 by replacing it with the last link
-//            p_link_array->links[i] = p_link_array->links[p_link_array->log_size - 1];
-//            p_link_array->log_size--;
-//        }
-//        else
-//        {
-//            i++;
-//        }
-//    }
-//}

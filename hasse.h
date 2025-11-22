@@ -24,9 +24,6 @@ typedef struct s_class{
   t_tarjan_list * list;
   int len;
 } t_class, * p_class;
-  t_tarjan_vertex * vertices;
-  int len; int id;
-} t_class, * p_class;
 
 typedef struct s_partition{
   t_class ** classes;

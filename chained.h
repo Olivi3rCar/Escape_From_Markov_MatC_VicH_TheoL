@@ -102,7 +102,6 @@ void displayAdjList(t_adjlist a);
 /// \param a Pointer to the AdjList to free
 void freeAdjList(p_adjlist a);
 
-static char *getID(int i);
 
 /// Checks if an adjacency list is a Markov Chain or not, and outputs what's wrong
 void isMarkov(t_adjlist);
@@ -116,5 +115,6 @@ p_adjlist readGraph (const char * filename);
 /// @param filename
 void drawGraph (const char * filename);
 
+static char *getID(int i);
 
 #endif //INC_2526_TI301_PJT_CHAINED_H
