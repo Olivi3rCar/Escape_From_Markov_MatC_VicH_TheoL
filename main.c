@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include "chained.h"
+#include "hasse.h"
+
 
 int main() {
 
@@ -11,12 +13,14 @@ int main() {
     displayAdjList(*new_adj);
     printf("\n");
 
-    printf("But is this matrix a Markov graph ? If not, why ?:\n");
-    isMarkov(*new_adj);
-    printf("\n");
+    t_partition partition = tarjan_algorithm(new_adj);
 
-    printf("Fine, now, create a file to display it in Mermaid:\n");
-    drawGraph("../data/exemple3.txt");
+    // printf("But is this matrix a Markov graph ? If not, why ?:\n");
+    // isMarkov(*new_adj);
+    // printf("\n");
+    //
+    // printf("Fine, now, create a file to display it in Mermaid:\n");
+    // drawGraph("../data/exemple3.txt");
 
 
     freeAdjList(new_adj);

@@ -15,7 +15,9 @@ typedef struct s_tarjan_vertex{
 
 typedef struct s_tarjan_list{
    t_tarjan_vertex * vertices;
-   } t_tarjan_list;
+  int list_p_len;
+  int list_l_len;
+} t_tarjan_list;
 
 typedef struct s_class{
   int id;
@@ -25,11 +27,13 @@ typedef struct s_class{
 
 typedef struct s_partition{
   t_class ** classes;
+  int p_len;
+  int l_len;
 } t_partition;
 
 t_partition * create_partition(int len);
 
-t_tarjan_list * create_filled_tarjan_list(t_adjlist * adj_list);
+t_tarjan_list * create_filled_tarjan_list(const t_adjlist * adj_list);
 
 t_class * create_class(int edge_size);
 
@@ -49,17 +53,8 @@ void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
 t_partition tarjan_algorithm(t_adjlist* adj_list);
 
 t_stack_tarjan * create_empty_stack(int size);
+t_stack_cell* create_cell_stack ();
 t_stack_tarjan * push(t_tarjan_vertex *to_be_celled, t_stack_tarjan * stack);
 t_tarjan_vertex * pop(t_stack_tarjan * stack);
-
-/**
- * @brief Creates a link array from the given partition and graph.
- *
- * @param part The partition of the graph.
- * @param graph The adjacency list representation of the graph.
- * @return The created link array.
- */
-//void removeTransitiveLinks(t_link_array *p_link_array);
-
 
 #endif

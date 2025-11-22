@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/victo/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/chained.c" "CMakeFiles/TI_301_PJT.dir/chained.c.obj" "gcc" "CMakeFiles/TI_301_PJT.dir/chained.c.obj.d"
+  "C:/Users/victo/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/hasse.c" "CMakeFiles/TI_301_PJT.dir/hasse.c.obj" "gcc" "CMakeFiles/TI_301_PJT.dir/hasse.c.obj.d"
   "C:/Users/victo/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/main.c" "CMakeFiles/TI_301_PJT.dir/main.c.obj" "gcc" "CMakeFiles/TI_301_PJT.dir/main.c.obj.d"
   )
 
