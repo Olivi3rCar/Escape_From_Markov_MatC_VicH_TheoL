@@ -13,21 +13,17 @@ int main() {
     displayAdjList(*new_adj);
     printf("\n");
 
-    t_partition partition = tarjan_algorithm(new_adj);
-
-    // printf("But is this matrix a Markov graph ? If not, why ?:\n");
-    // isMarkov(*new_adj);
-    // printf("\n");
-    //
-    // printf("Fine, now, create a file to display it in Mermaid:\n");
-    // drawGraph("../data/exemple3.txt");
+    printf("But is this matrix a Markov graph ? If not, why ?:\n");
+    isMarkov(*new_adj);
+    printf("\n");
+    printf("Fine, now, create a file to display it in Mermaid:\n");
+    //drawGraph("../data/exemple3.txt");
 
     /// Test of the Part 2 of II
     /// creation of a Tarjan graph
 
-    p_tarjan_list troy = create_tarjan_list(new_adj);
-    //p_link_array part = createTransitiveLinks()
-
+    t_partition new_partition = tarjan_algorithm(new_adj);
+    drawHasse(new_partition);
 
     freeAdjList(new_adj);
 

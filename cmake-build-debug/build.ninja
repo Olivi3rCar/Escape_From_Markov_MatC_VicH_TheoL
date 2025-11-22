@@ -96,6 +96,62 @@ build TI_301_PJT.exe: C_EXECUTABLE_LINKER__TI_301_PJT_Debug CMakeFiles/TI_301_PJ
   TARGET_IMPLIB = libTI_301_PJT.dll.a
   TARGET_PDB = TI_301_PJT.pdb
 
+# =============================================================================
+# Object build statements for EXECUTABLE target part2
+
+
+#############################################
+# Order-only phony target for part2
+
+build cmake_object_order_depends_target_part2: phony || .
+
+build CMakeFiles/part2.dir/part2.c.obj: C_COMPILER__part2_unscanned_Debug C$:/Users/theo4/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/part2.c || cmake_object_order_depends_target_part2
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\part2.dir\part2.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\part2.dir
+  OBJECT_FILE_DIR = CMakeFiles\part2.dir
+  TARGET_COMPILE_PDB = CMakeFiles\part2.dir\
+  TARGET_PDB = part2.pdb
+
+build CMakeFiles/part2.dir/hasse.c.obj: C_COMPILER__part2_unscanned_Debug C$:/Users/theo4/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/hasse.c || cmake_object_order_depends_target_part2
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\part2.dir\hasse.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\part2.dir
+  OBJECT_FILE_DIR = CMakeFiles\part2.dir
+  TARGET_COMPILE_PDB = CMakeFiles\part2.dir\
+  TARGET_PDB = part2.pdb
+
+build CMakeFiles/part2.dir/chained.c.obj: C_COMPILER__part2_unscanned_Debug C$:/Users/theo4/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/chained.c || cmake_object_order_depends_target_part2
+  CONFIG = Debug
+  DEP_FILE = CMakeFiles\part2.dir\chained.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\part2.dir
+  OBJECT_FILE_DIR = CMakeFiles\part2.dir
+  TARGET_COMPILE_PDB = CMakeFiles\part2.dir\
+  TARGET_PDB = part2.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target part2
+
+
+#############################################
+# Link the executable part2.exe
+
+build part2.exe: C_EXECUTABLE_LINKER__part2_Debug CMakeFiles/part2.dir/part2.c.obj CMakeFiles/part2.dir/hasse.c.obj CMakeFiles/part2.dir/chained.c.obj
+  CONFIG = Debug
+  FLAGS = -g
+  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  OBJECT_DIR = CMakeFiles\part2.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\part2.dir\
+  TARGET_FILE = part2.exe
+  TARGET_IMPLIB = libpart2.dll.a
+  TARGET_PDB = part2.pdb
+
 
 #############################################
 # Utility command for edit_cache
@@ -124,6 +180,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build TI_301_PJT: phony TI_301_PJT.exe
 
+build part2: phony part2.exe
+
 # =============================================================================
 # Folder targets.
 
@@ -132,7 +190,7 @@ build TI_301_PJT: phony TI_301_PJT.exe
 #############################################
 # Folder: C:/Users/theo4/CLionProjects/Escape_From_Markov_MatC_VicH_TheoL/cmake-build-debug
 
-build all: phony TI_301_PJT.exe
+build all: phony TI_301_PJT.exe part2.exe
 
 # =============================================================================
 # Built-in targets

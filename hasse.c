@@ -129,37 +129,38 @@ void freeTransitiveLinks(p_link_array linkArray){
     free(linkArray);
     return;
 }
+// ne fonctionne pas,
+void drawHasse(t_partition part) {
 
-// void drawHasse(t_partition part) {
-//
-//     FILE *output = fopen("../data/dusk.txt", "w");
-//     if (!output) {
-//         perror("Could not open/create the file for writing");
-//         exit(EXIT_FAILURE);
-//     }
-//
-//     fprintf(output, "---\n"
-//                     "config:\n"
-//                     "    layout: elk\n"
-//                     "    theme: neo\n"
-//                     "    look: neo\n"
-//                     "---\n\n"
-//                     "flowchart LR\n");
-//
-//     ///Writing all the differents nodes
-//     for (int i = 0; i < part.l_len; i++) {
-//         fprintf(output, "%s[%s]\n",getID(i+1),part.classes[i]->id);
-//     }
-//     fprintf(output, "\n");
-//
-//     ///Linking the nodes
-//     //p_link_array trLinks = createTransitiveLinks();
-//     //removeTransitiveLinks(trLinks);
-//     //for (truc) {machin dans output}
-//
-//     fclose(output);
-//     printf("The file has been successfully outputed here: Escape_From_Markov_MatC_VicH_TheoL/data/ariel.txt\n");
-// }
+    FILE *output = fopen("../data/ariel.txt", "w");
+    if (!output) {
+        perror("Could not open/create the file for writing");
+        exit(EXIT_FAILURE);
+    }
+
+    fprintf(output, "---\n"
+                    "config:\n"
+                    "    layout: elk\n"
+                    "    theme: neo\n"
+                    "    look: neo\n"
+                    "---\n\n"
+                    "flowchart LR\n");
+
+    ///Writing all the differents nodes
+    for (int i = 0; i < part.l_len; i++) {
+        fprintf(output, "%s[%d]\n",getID(i+1),part.classes[i]->id);
+        printf("marche stp");
+    }
+    fprintf(output, "\n");
+
+    //Linking the nodes
+    //p_link_array trLinks = createTransitiveLinks();
+    //removeTransitiveLinks(trLinks);
+    //for (truc) {machin dans output}
+
+    fclose(output);
+    printf("The file HAS BEEN FUCKING successfully outputed here: Escape_From_Markov_MatC_VicH_TheoL/data/ariel.txt\n");
+}
 
 
 t_class * create_class(const int edge_size) {
