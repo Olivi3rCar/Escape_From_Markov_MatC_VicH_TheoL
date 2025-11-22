@@ -47,10 +47,10 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\victo\CLionProjects\Escape_From_Markov_MatC_VicH_The
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2024.3.2\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2024.3.4\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -128,12 +128,26 @@ TI_301_PJT/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/build
 .PHONY : TI_301_PJT/fast
 
+#=============================================================================
+# Target rules for targets named part2
+
+# Build rule for target.
+part2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 part2
+.PHONY : part2
+
+# fast build rule for target.
+part2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/build
+.PHONY : part2/fast
+
 chained.obj: chained.c.obj
 .PHONY : chained.obj
 
 # target to build an object file
 chained.c.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/chained.c.obj
 .PHONY : chained.c.obj
 
 chained.i: chained.c.i
@@ -142,6 +156,7 @@ chained.i: chained.c.i
 # target to preprocess a source file
 chained.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/chained.c.i
 .PHONY : chained.c.i
 
 chained.s: chained.c.s
@@ -150,7 +165,35 @@ chained.s: chained.c.s
 # target to generate assembly for a file
 chained.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/chained.c.s
 .PHONY : chained.c.s
+
+hasse.obj: hasse.c.obj
+.PHONY : hasse.obj
+
+# target to build an object file
+hasse.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/hasse.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/hasse.c.obj
+.PHONY : hasse.c.obj
+
+hasse.i: hasse.c.i
+.PHONY : hasse.i
+
+# target to preprocess a source file
+hasse.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/hasse.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/hasse.c.i
+.PHONY : hasse.c.i
+
+hasse.s: hasse.c.s
+.PHONY : hasse.s
+
+# target to generate assembly for a file
+hasse.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/hasse.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/hasse.c.s
+.PHONY : hasse.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -176,6 +219,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/main.c.s
 .PHONY : main.c.s
 
+part2.obj: part2.c.obj
+.PHONY : part2.obj
+
+# target to build an object file
+part2.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/part2.c.obj
+.PHONY : part2.c.obj
+
+part2.i: part2.c.i
+.PHONY : part2.i
+
+# target to preprocess a source file
+part2.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/part2.c.i
+.PHONY : part2.c.i
+
+part2.s: part2.c.s
+.PHONY : part2.s
+
+# target to generate assembly for a file
+part2.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/part2.c.s
+.PHONY : part2.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -185,12 +252,19 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TI_301_PJT
+	@echo ... part2
 	@echo ... chained.obj
 	@echo ... chained.i
 	@echo ... chained.s
+	@echo ... hasse.obj
+	@echo ... hasse.i
+	@echo ... hasse.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... part2.obj
+	@echo ... part2.i
+	@echo ... part2.s
 .PHONY : help
 
 
