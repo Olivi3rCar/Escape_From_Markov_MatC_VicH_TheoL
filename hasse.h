@@ -85,4 +85,6 @@ void freeTransitiveLinks(p_link_array linkArray);
 /// \param part Partition of a Markov graph
 void drawHasse(t_partition part, t_adjlist graph);
 
+void graph_characteristics(t_partition partition, t_link_array links);
+
 #endif

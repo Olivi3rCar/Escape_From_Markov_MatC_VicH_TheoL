@@ -43,6 +43,7 @@ p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
     return linkedVC;
 }
 
+
 p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
     // Instantiation and allocation of the p_link_array
     p_link arrLLL = malloc(567 * sizeof(t_link));
@@ -77,6 +78,14 @@ p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
         }
     }
     return linkA;
+}
+
+
+void graph_characteristics(t_partition partition, t_link_array links) {
+    if (partition.l_len==1) {
+        printf("The markov graph is irreducible");
+    }
+
 }
 
 void removeTransitiveLinks(p_link_array linkArray)
@@ -130,7 +139,7 @@ void freeTransitiveLinks(p_link_array linkArray){
     return;
 }
 
- void drawHasse(t_partition part, t_adjlist graph) {
+void drawHasse(t_partition part, t_adjlist graph) {
 
      FILE *output = fopen("../data/dusk.txt", "w");
      if (!output) {

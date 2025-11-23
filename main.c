@@ -95,9 +95,11 @@ int main() {
     /// creation of a Tarjan graph
 
     t_partition new_partition = tarjan_algorithm(new_adj);
-    drawHasse(new_partition, *new_adj);
+    //drawHasse(new_partition, *new_adj);
 
-    freeAdjList(new_adj);
+
+
+    //freeAdjList(new_adj);
 
 
     return 0;
