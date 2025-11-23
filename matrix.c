@@ -109,13 +109,16 @@ float diff_matrix(t_mat mat1, t_mat mat2){
 
 p_mat subMatrix(t_mat matrix, t_partition part, int compo_index) {
     //We look for the size of our new Submat
-    int subMat_size = part.classes[compo_index]->len;
+    int subMat_size = part.classes[compo_index]->list->list_l_len;
     //we create our new subMat of the size subMat_size
     t_mat * Submat = zero_matrix(subMat_size);
     //We get the values of the classes to get the values out of matrix (red pill)
     int * class =(int*)malloc(subMat_size * sizeof(int));
-    for (int j = 0; j < part.classes[compo_index]->list->list_l_len-1; j++) {
-        class[j]=part.classes[compo_index]->list->vertices[j].id;
+    int count = 0;
+    for (int j = 0; j < part.classes[compo_index]->list->list_l_len; j++) {
+        printf("%d\n",count);
+        count++;
+        class[j]=part.classes[compo_index]->list->vertices[j].number;
     }
     //Now we can get the values out of matrix and put them into Submat
     for (int i = 0; i < subMat_size; i++) {
