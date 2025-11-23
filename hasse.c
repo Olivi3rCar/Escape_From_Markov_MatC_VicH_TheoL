@@ -93,7 +93,7 @@ void graph_characteristics(t_partition partition, t_link_array links) {
             for (int j = 0; j < partition.classes[i]->list->list_l_len-1; j++) {
                 printf("%d,",partition.classes[i]->list->vertices[j].id);
             }
-            printf("%d} is persistent",partition.classes[i]->list->vertices[partition.classes[i]->list->list_l_len-1].id);
+            printf("%d} is persistent. ",partition.classes[i]->list->vertices[partition.classes[i]->list->list_l_len-1].id);
             if (partition.classes[i]->len==1) {
                 printf("The element inside is absorbing.");
             }
