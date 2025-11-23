@@ -26,7 +26,7 @@ typedef struct s_class{
 } t_class, * p_class;
 
 typedef struct s_partition{
-  t_class ** classes;
+  p_class * classes;
   int p_len;
   int l_len;
 } t_partition, * p_partition;
@@ -60,9 +60,11 @@ p_class link_vertex_to_class(t_adjlist vertices, t_partition part);
 /// \return The newly created link array
 
 p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part);
+
 void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
               t_partition* partition, t_adjlist* adj_list, t_tarjan_list* tarjan_list, int * id);
-t_partition tarjan_algorithm(t_adjlist* adj_list);
+
+p_partition tarjan_algorithm(t_adjlist* adj_list);
 /**
  * @brief Modifies a given link array to remove redundancy.
  *
@@ -83,6 +85,6 @@ void freeTransitiveLinks(p_link_array linkArray);
 /// Current graph present in a txt file
 /// into another txt file (dusk.txt)
 /// \param part Partition of a Markov graph
-void drawHasse(t_partition part);
+void drawHasse(t_partition part, t_adjlist graph);
 
 #endif

@@ -12,10 +12,6 @@ p_cell createCell(int arrVer, float prob){
     return newc;
 }
 
-void freeCell(p_cell c){
-    free(c);
-}
-
 p_clist createCList(){
     p_clist newl = (p_clist) malloc(sizeof(t_clist));
     newl->head = NULL;
@@ -42,9 +38,16 @@ void displayCList(t_clist l){
 }
 
 void freeCList(p_clist l){
+    printf("\ntofree :");
+    displayCList(*l);
     p_cell c = l->head, prev = c;
-    while (c != NULL) {c = c->next; free(prev); prev = c;}
+    while (c != NULL) {printf("i- curr : %x --- prev : %x\n",c,prev);
+        c = c->next; free(prev);
+        printf("well freed\n"); prev = c;}
+    printf("OOTL\n");
+    printf("%x", l);
     free(l);
+    printf("FREED L");
 }
 
 p_adjlist createAdjList(int VictorCompliantnumberOfVertices){
@@ -71,7 +74,7 @@ void displayAdjList(t_adjlist a){
 
 void freeAdjList(p_adjlist a){
     for (int i = 0; i < a->len; i ++) {
-        free(a->listarray[i]);
+        freeCList(a->listarray[i]);
     }
     free(a);
 }
