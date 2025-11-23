@@ -87,17 +87,23 @@ void graph_characteristics(t_partition partition, t_link_array links) {
         return;
     }
 
-    for (int i = 0; i < links.len; i++) {
-        if (links.arr[i].to == i+1) {
-            printf("\nClass %d is persistent",i);
-            for (int j = 0; j < partition.l_len; j++) {
-
+    for (int i = 0; i < partition.l_len; i++) {
+        if (links.arr[i].to == i) {
+            printf("\nClass %d {",i);
+            for (int j = 0; j < partition.classes[i]->list->list_l_len-1; j++) {
+                printf("%d,",partition.classes[i]->list->vertices[j].id);
             }
+            printf("%d} is persistent",partition.classes[i]->list->vertices[partition.classes[i]->list->list_l_len-1].id);
             if (partition.classes[i]->len==1) {
                 printf("The element inside is absorbing.");
             }
+
         }else {
-            printf("\nClass %d is transient",i);
+            printf("\nClass %d {",i);
+            for (int j = 0; j < partition.classes[i]->list->list_l_len-1; j++) {
+                printf("%d,",partition.classes[i]->list->vertices[j].id);
+            }
+            printf("%d} is transient",partition.classes[i]->list->vertices[partition.classes[i]->list->list_l_len-1].id);
         }
     }
 }
