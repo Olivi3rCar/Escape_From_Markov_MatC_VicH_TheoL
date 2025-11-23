@@ -106,6 +106,7 @@ float diff_matrix(t_mat mat1, t_mat mat2){
     return final;
 }
 
+
 p_mat subMatrix(t_mat matrix, t_partition part, int compo_index) {
     //We look for the size of our new Submat
     int subMat_size = part.classes[compo_index]->len;
