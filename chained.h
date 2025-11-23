@@ -110,5 +110,4 @@ p_adjlist readGraph (const char * filename);
 /// @param filename
 void drawGraph (const char * filename);
 
-
 #endif //INC_2526_TI301_PJT_CHAINED_H

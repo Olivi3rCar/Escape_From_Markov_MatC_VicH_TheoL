@@ -45,7 +45,9 @@ typedef struct s_stack_tarjan{
 } t_stack_tarjan, * p_stack_tarjan_vertex;
 
 typedef struct s_link{
-  int from, to;
+  //ID of the class that can go to to (turlututu chapeau pointu)
+  int from;
+  int to;
 } t_link, *p_link;
 
 typedef struct s_link_array{
@@ -88,5 +90,7 @@ void freeTransitiveLinks(p_link_array linkArray);
 void drawHasse(t_partition part, t_adjlist graph);
 
 void graph_characteristics(t_partition partition, t_link_array links);
+
+void display_tarjan(t_partition);
 
 #endif

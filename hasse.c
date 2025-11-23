@@ -32,12 +32,13 @@ p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
     p_class linkedVC = malloc(vertices.len * sizeof(t_class));
     for (int i = 0; i < part.l_len; i++) {
         // For each class in the partition
-        for (int j = 0; j < part.classes[i]->len; j++) {
+        //printf("Classes len: %d\tList len: %d\n",part.classes[i]->len,part.classes[i]->list->list_l_len);
+        for (int j = 0; j < part.classes[i]->list->list_l_len; j++) {
             // For each vertex in that class
             // We link the current vertex to the corresponding class
             // in the newly created array. (the index of the element of the array
             // corresponds to the id of the vertex)
-            linkedVC[part.classes[i]->list->vertices[j].id] = *part.classes[i];
+            linkedVC[part.classes[i]->list->vertices[j].id-1] = *part.classes[i];
         }
     }
     return linkedVC;
@@ -45,9 +46,9 @@ p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
 
 p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
     // Instantiation and allocation of the p_link_array
-    p_link arrLLL = malloc(100 * sizeof(t_link));
+    p_link arrLLL = malloc(42 * sizeof(t_link));
     p_link_array linkA = malloc(sizeof(t_link_array));
-    linkA->arr = arrLLL; linkA->len = 100; linkA->log_size = 0;
+    linkA->arr = arrLLL; linkA->len = 42; linkA->log_size = 0;
 
     p_class linkedVC = link_vertex_to_class(vertices, part);
     for (int i = 0; i < vertices.len; i++) {
@@ -63,7 +64,7 @@ p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
                 // for each link in the p_link_array
                 // we check if the current link is already present
                 t_link currelt = linkA->arr[kk++];
-                if (Ci.id==linkedVC[currelt.from].id && Cj.id==linkedVC[currelt.to].id) {
+                if (Ci.id==linkedVC[currelt.from].id || Cj.id==linkedVC[currelt.to].id) {
                     v = 0;
                 }
             }
@@ -89,22 +90,28 @@ void graph_characteristics(t_partition partition, t_link_array links) {
     }
 
     for (int i = 0; i < partition.l_len; i++) {
-        if (links.arr[i].to == i) {
-            printf("\nClass %d {",i);
+        printf("\nClass %d {",i+1);
+        int transylvania_bool=0;
+        for (int k=0; k<links.len; k++) {
+            if (links.arr[k].from==i && links.arr[k].to!=i) {
+                transylvania_bool=1;
+            }
+        }
+        if (!transylvania_bool){
             for (int j = 0; j < partition.classes[i]->list->list_l_len-1; j++) {
                 printf("%d,",partition.classes[i]->list->vertices[j].id);
             }
-            printf("%d} is persistent",partition.classes[i]->list->vertices[partition.classes[i]->list->list_l_len-1].id);
-            if (partition.classes[i]->len==1) {
+            printf("%d}\tis persistent",partition.classes[i]->list->vertices[partition.classes[i]->list->list_l_len-1].id);
+            if (partition.classes[i]->list->list_l_len<=1) {
                 printf(". The element inside is absorbing.");
             }
 
         }else {
-            printf("\nClass %d {",i);
             for (int j = 0; j < partition.classes[i]->list->list_l_len-1; j++) {
                 printf("%d,",partition.classes[i]->list->vertices[j].id);
             }
-            printf("%d} is transient",partition.classes[i]->list->vertices[partition.classes[i]->list->list_l_len-1].id);
+            printf("%d}\tis transitory",partition.classes[i]->list->vertices[partition.classes[i]->list->list_l_len-1].id);
+
         }
     }
 }
@@ -167,7 +174,6 @@ void drawHasse(t_partition part, t_adjlist graph) {
         perror("Could not open/create the file for writing");
         exit(EXIT_FAILURE);
     }
-    printf("1");
     fprintf(output, "---\n"
                     "config:\n"
                     "    layout: elk\n"
@@ -175,10 +181,13 @@ void drawHasse(t_partition part, t_adjlist graph) {
                     "    look: neo\n"
                     "---\n\n"
                     "flowchart LR\n");
-    printf("1,5");
     ///Writing all the differents nodes
     for (int i = 0; i < part.l_len; i++) {
-        fprintf(output, "%s[%d]\n",getID(i+1),part.classes[i]->id);
+        fprintf(output, "%s[\"{",getID(i+1));
+        for (int j=0; j<part.classes[i]->list->list_l_len-1; j++) {
+            fprintf(output, "%d,",part.classes[i]->list->vertices[j].id);
+        }
+        fprintf(output, "%d}\"]\n",part.classes[i]->list->vertices[part.classes[i]->list->list_l_len-1].id);
     }
     fprintf(output, "\n");
 
@@ -364,4 +373,14 @@ p_partition tarjan_algorithm(t_adjlist* adj_list){
   }
 //  printf("I'm ... done ???");
   return partition;
+}
+
+
+void display_tarjan(t_partition partition) {
+    for (int i=0; i<partition.l_len; i++) {
+        printf("Class %d:\n",i+1);
+        for (int j=0; j<partition.classes[i]->list->list_l_len; j++) {
+            printf("Element %d\tId: %d\t\n",j+1, partition.classes[i]->list->vertices[j].id);
+        }
+    }
 }
