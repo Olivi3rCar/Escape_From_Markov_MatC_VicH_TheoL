@@ -1,0 +1,17 @@
+---
+config:
+    layout: elk
+    theme: neo
+    look: neo
+---
+
+flowchart LR
+A["{4}"]
+B["{2,7,6}"]
+C["{8,5}"]
+D["{3,1}"]
+
+D-->A
+D-->B
+B-->C
+C-->A

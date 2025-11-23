@@ -91,8 +91,8 @@ int main() {
        free_matrix(tocopythentofree);
        n++;
    }
-   printf("For example meteo :\nmin value of n for which m^n - m^n-1 <= 0.01 :\n"
-          "n = %d; epsilon = %f\n", n, epsilon);
+   printf("\nFor example meteo :\nmin value of n for which m^n - m^n-1 <= 0.01 :\n"
+          "n = %d; epsilon = %f\n\n", n, epsilon);
 
     // min value of n for which m^n - m^n-1 <= 0.01
     epsilon = 1;
@@ -107,7 +107,7 @@ int main() {
         n++;
     }
     printf("For the file Example 1 :\nmin value of n for which m^n - m^n-1 <= 0.01 :\n"
-           "n = %d; epsilon = %f\n", n, epsilon);
+           "n = %d; epsilon = %f\n\n", n, epsilon);
 
     // min value of n for which m^n - m^n-1 <= 0.01
     epsilon = 1;
@@ -122,7 +122,7 @@ int main() {
         n++;
     }
     printf("For the file Example 2 :\nmin value of n for which m^n - m^n-1 <= 0.01 :\n"
-           "n = %d; epsilon = %f\n", n, epsilon);
+           "n = %d; epsilon = %f\n\n", n, epsilon);
 
     // min value of n for which m^n - m^n-1 <= 0.01
     epsilon = 1;
@@ -138,31 +138,28 @@ int main() {
     }
     printf("For the file Example 3, we have an infinite loop, because example 3 isn't a markov graph");
     printf("For the file Example 3 :\nmin value of n for which m^n - m^n-1 <= 0.01 :\n"
-       "n = %d; epsilon = %f\n", n, epsilon);
+       "n = %d; epsilon = %f\n\n", n, epsilon);
 
     display_matrix(*thegmat2);
     p_partition meteo_partition_cest_quand_meme_un_peu_drole = tarjan_algorithm(mat_adj2);
     p_link_array kasame_teo = createTransitiveLinks(*mat_adj2, *meteo_partition_cest_quand_meme_un_peu_drole);
     graph_characteristics(*meteo_partition_cest_quand_meme_un_peu_drole, *kasame_teo);
     for (int i=0; i<meteo_partition_cest_quand_meme_un_peu_drole->l_len;i++) {
-        p_mat sub_meteo = subMatrix(*thegmat2, *meteo_partition_cest_quand_meme_un_peu_drole, i);
+        p_mat sub2 = subMatrix(*thegmat2, *meteo_partition_cest_quand_meme_un_peu_drole, i);
         printf("\n\nThis is the submatrix for class %d:\n",i+1);
-        display_matrix(*sub_meteo);
+        display_matrix(*sub2);
     }
+    p_mat sub2 = subMatrix(*thegmat2, *meteo_partition_cest_quand_meme_un_peu_drole, 1);
 
-    mn = zero_matrix(thegmat2->len);
-    copy_matrix(*thegmat2, mn);
+    mn = zero_matrix(sub2->len);
+    copy_matrix(*sub2, mn);
     for (int i = 0; i < 300; i++) {
-        p_mat tocopythentofree = mult_matrix(*thegmat2, *mn);
+        p_mat tocopythentofree = mult_matrix(*sub2, *mn);
         copy_matrix(*tocopythentofree, mn);
         free_matrix(tocopythentofree);
     }
-    for (int i=0; i<meteo_partition_cest_quand_meme_un_peu_drole->l_len;i++) {
-        p_mat sub_meteo = subMatrix(*mn, *meteo_partition_cest_quand_meme_un_peu_drole, i);
-        printf("\n\nThis is the submatrix for class %d:\n",i+1);
-        display_matrix(*sub_meteo);
-    }
-
+    printf("\nThis is the stationnary matrix of the 2nd class sub matrix of the example 2\n");
+    display_matrix(*mn);
 
     return 0;
 }
