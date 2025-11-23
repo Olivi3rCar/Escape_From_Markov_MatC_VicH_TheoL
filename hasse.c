@@ -147,7 +147,7 @@ void drawHasse(t_partition part) {
                     "flowchart LR\n");
 
     ///Writing all the differents nodes
-    for (int i = 0; i < part.l_len; i++) {
+    for (int i = 0; i < part.p_len; i++) {
         fprintf(output, "%s[%d]\n",getID(i+1),part.classes[i]->id);
         printf("marche stp");
     }
