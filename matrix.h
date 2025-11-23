@@ -6,6 +6,7 @@
 #define INC_2526_TI301_PJT_MATRIX_H
 
 #include "chained.h"
+#include "hasse.h"
 
 typedef struct s_mat{
     float ** mat; int len;
@@ -45,5 +46,6 @@ p_mat mult_matrix(t_mat mat1, t_mat mat2);
 /// \return the absolute difference between mat1 & mat2
 float diff_matrix(t_mat mat1, t_mat mat2);
 
+p_mat subMatrix(t_mat matrix, t_partition part, int compo_index);
 
 #endif //INC_2526_TI301_PJT_MATRIX_H

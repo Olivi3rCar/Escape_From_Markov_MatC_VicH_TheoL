@@ -94,9 +94,24 @@ int main() {
     /// Test of the Part 2 of II
     /// creation of a Tarjan graph
 
-    p_partition new_partition = tarjan_algorithm(new_adj);
-    drawHasse(*new_partition, *new_adj);
-    freeAdjList(new_adj);
+
+   //  p_link_array plink = createTransitiveLinks(*new_adj, new_partition);
+   //  removeTransitiveLinks(plink);
+   //  graph_characteristics(new_partition, *plink);
+   //
+   // drawHasse(new_partition, *new_adj);
+   // displayAdjList(*new_adj);
+   // freeAdjList(new_adj);
+
+
+    //TEST OF PART 2 III (théo)
+    //TESTSUBMAT.txt is litteraly the exemple of part 2 II
+
+    p_adjlist new_adjlol = readGraph("../data/TESTSUBMAT.txt");
+    p_mat theMAT = create_matrix(*new_adjlol);
+    t_partition new_partition = tarjan_algorithm(new_adjlol);
+    p_mat MATRIXO = subMatrix(*theMAT,new_partition,2);
+    display_matrix(*MATRIXO);
 
 
     printf("\n----------Over.----------");
