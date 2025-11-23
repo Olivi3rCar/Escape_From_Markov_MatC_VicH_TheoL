@@ -17,7 +17,7 @@ int main() {
     isMarkov(*new_adj);
     printf("\n");
     printf("Fine, now, create a file to display it in Mermaid:\n");
-    //drawGraph("../data/exemple3.txt");
+    drawGraph("../data/exemple3.txt");
 
 
     // PART 3 OUT OF 3 TESTING AND VALIDATION
@@ -96,8 +96,7 @@ int main() {
 
     p_partition new_partition = tarjan_algorithm(new_adj);
     drawHasse(*new_partition, *new_adj);
-//    displayAdjList(*new_adj);
-//    freeAdjList(new_adj);
+    freeAdjList(new_adj);
 
 
     printf("\n----------Over.----------");

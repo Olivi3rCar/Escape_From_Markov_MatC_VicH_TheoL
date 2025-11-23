@@ -52,7 +52,7 @@ typedef struct s_link_array{
   p_link arr; int len; int log_size;
 } t_link_array, *p_link_array;
 
-p_class link_vertex_to_class(t_adjlist vertices, t_partition part);
+p_class link_vertex_to_class(t_partition part);
 
 /// Creates and returns a pointer to a Transitive Link array
 /// of type t_link_array
