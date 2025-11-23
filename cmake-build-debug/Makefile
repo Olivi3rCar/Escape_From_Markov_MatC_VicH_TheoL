@@ -128,26 +128,12 @@ TI_301_PJT/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/build
 .PHONY : TI_301_PJT/fast
 
-#=============================================================================
-# Target rules for targets named part2
-
-# Build rule for target.
-part2: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 part2
-.PHONY : part2
-
-# fast build rule for target.
-part2/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/build
-.PHONY : part2/fast
-
 chained.obj: chained.c.obj
 .PHONY : chained.obj
 
 # target to build an object file
 chained.c.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/chained.c.obj
 .PHONY : chained.c.obj
 
 chained.i: chained.c.i
@@ -156,7 +142,6 @@ chained.i: chained.c.i
 # target to preprocess a source file
 chained.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/chained.c.i
 .PHONY : chained.c.i
 
 chained.s: chained.c.s
@@ -165,7 +150,6 @@ chained.s: chained.c.s
 # target to generate assembly for a file
 chained.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/chained.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/chained.c.s
 .PHONY : chained.c.s
 
 hasse.obj: hasse.c.obj
@@ -174,7 +158,6 @@ hasse.obj: hasse.c.obj
 # target to build an object file
 hasse.c.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/hasse.c.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/hasse.c.obj
 .PHONY : hasse.c.obj
 
 hasse.i: hasse.c.i
@@ -183,7 +166,6 @@ hasse.i: hasse.c.i
 # target to preprocess a source file
 hasse.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/hasse.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/hasse.c.i
 .PHONY : hasse.c.i
 
 hasse.s: hasse.c.s
@@ -192,7 +174,6 @@ hasse.s: hasse.c.s
 # target to generate assembly for a file
 hasse.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/hasse.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/hasse.c.s
 .PHONY : hasse.c.s
 
 main.obj: main.c.obj
@@ -219,29 +200,29 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/main.c.s
 .PHONY : main.c.s
 
-part2.obj: part2.c.obj
-.PHONY : part2.obj
+matrix.obj: matrix.c.obj
+.PHONY : matrix.obj
 
 # target to build an object file
-part2.c.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/part2.c.obj
-.PHONY : part2.c.obj
+matrix.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/matrix.c.obj
+.PHONY : matrix.c.obj
 
-part2.i: part2.c.i
-.PHONY : part2.i
+matrix.i: matrix.c.i
+.PHONY : matrix.i
 
 # target to preprocess a source file
-part2.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/part2.c.i
-.PHONY : part2.c.i
+matrix.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/matrix.c.i
+.PHONY : matrix.c.i
 
-part2.s: part2.c.s
-.PHONY : part2.s
+matrix.s: matrix.c.s
+.PHONY : matrix.s
 
 # target to generate assembly for a file
-part2.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\part2.dir\build.make CMakeFiles/part2.dir/part2.c.s
-.PHONY : part2.c.s
+matrix.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TI_301_PJT.dir\build.make CMakeFiles/TI_301_PJT.dir/matrix.c.s
+.PHONY : matrix.c.s
 
 # Help Target
 help:
@@ -252,7 +233,6 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... TI_301_PJT
-	@echo ... part2
 	@echo ... chained.obj
 	@echo ... chained.i
 	@echo ... chained.s
@@ -262,9 +242,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
-	@echo ... part2.obj
-	@echo ... part2.i
-	@echo ... part2.s
+	@echo ... matrix.obj
+	@echo ... matrix.i
+	@echo ... matrix.s
 .PHONY : help
 
 
