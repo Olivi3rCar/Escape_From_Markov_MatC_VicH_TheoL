@@ -94,8 +94,12 @@ int main() {
     /// Test of the Part 2 of II
     /// creation of a Tarjan graph
 
-    p_partition new_partition = tarjan_algorithm(new_adj);
-    drawHasse(*new_partition, *new_adj);
+    t_partition new_partition = tarjan_algorithm(new_adj);
+    p_link_array plink = createTransitiveLinks(*new_adj, new_partition);
+    removeTransitiveLinks(plink);
+    graph_characteristics(new_partition, *plink);
+
+//    drawHasse(*new_partition, *new_adj);
 //    displayAdjList(*new_adj);
 //    freeAdjList(new_adj);
 
