@@ -56,12 +56,6 @@ typedef struct s_adjlist t_adjlist, *p_adjlist;
 /// \return Pointer to the newly created cell
 p_cell createCell(int arrVer, float prob);
 
-/// Function to free the space of a t_cell element
-///
-/// \param c Pointer to the cell to free
-void freeCell(p_cell c);
-
-
 /// Function to create and dynamically allocate a t_clist element
 ///
 /// \return Pointer to the newly created CList

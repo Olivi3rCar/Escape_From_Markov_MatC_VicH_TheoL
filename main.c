@@ -94,11 +94,12 @@ int main() {
     /// Test of the Part 2 of II
     /// creation of a Tarjan graph
 
-    t_partition new_partition = tarjan_algorithm(new_adj);
-    drawHasse(new_partition, *new_adj);
+    p_partition new_partition = tarjan_algorithm(new_adj);
+    drawHasse(*new_partition, *new_adj);
+//    displayAdjList(*new_adj);
+//    freeAdjList(new_adj);
 
-    freeAdjList(new_adj);
 
-
+    printf("\n----------Over.----------");
     return 0;
 }
