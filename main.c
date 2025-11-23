@@ -71,24 +71,24 @@ int main() {
     }
     printf("this is M^7 :\n");
     display_matrix(*mn);
-    // free_matrix(mn);
+    free_matrix(mn);
 
-    // // min value of n for which m^n - m^n-1 <= 0.01
-    // float epsilon = 1;
-    // int n = 1;
-    // mn = zero_matrix(thegmat->len);
-    // copy_matrix(*thegmat, mn);
-    // while (epsilon > 0.01) {
-    //     p_mat tocopythentofree = mult_matrix(*thegmat, *mn);
-    //     epsilon = diff_matrix(*tocopythentofree, *mn);
-    //     copy_matrix(*tocopythentofree, mn);
-    //     free_matrix(tocopythentofree);
-    //     n++;
-    // }
-    // printf("min value of n for which m^n - m^n-1 <= 0.01 :\n"
-    //        "n = %d; epsilon = %f\n", n, epsilon);
-    //
-    // freeAdjList(test_adj);
+    // min value of n for which m^n - m^n-1 <= 0.01
+    float epsilon = 1;
+    int n = 1;
+    mn = zero_matrix(thegmat->len);
+    copy_matrix(*thegmat, mn);
+    while (epsilon > 0.01) {
+        p_mat tocopythentofree = mult_matrix(*thegmat, *mn);
+        epsilon = diff_matrix(*tocopythentofree, *mn);
+        copy_matrix(*tocopythentofree, mn);
+        free_matrix(tocopythentofree);
+        n++;
+    }
+    printf("min value of n for which m^n - m^n-1 <= 0.01 :\n"
+           "n = %d; epsilon = %f\n", n, epsilon);
+
+    freeAdjList(test_adj);
 
 
     /// Test of the Part 2 of II
@@ -109,8 +109,8 @@ int main() {
 
     p_adjlist new_adjlol = readGraph("../data/TESTSUBMAT.txt");
     p_mat theMAT = create_matrix(*new_adjlol);
-    t_partition new_partition = tarjan_algorithm(new_adjlol);
-    p_mat MATRIXO = subMatrix(*theMAT,new_partition,2);
+    p_partition new_partition = tarjan_algorithm(new_adjlol);
+    p_mat MATRIXO = subMatrix(*theMAT,*new_partition,2);
     display_matrix(*MATRIXO);
 
 

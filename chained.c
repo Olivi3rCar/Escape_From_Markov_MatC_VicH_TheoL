@@ -38,16 +38,9 @@ void displayCList(t_clist l){
 }
 
 void freeCList(p_clist l){
-    printf("\ntofree :");
-    displayCList(*l);
     p_cell c = l->head, prev = c;
-    while (c != NULL) {printf("i- curr : %x --- prev : %x\n",c,prev);
-        c = c->next; free(prev);
-        printf("well freed\n"); prev = c;}
-    printf("OOTL\n");
-    printf("%x", l);
+    while (c != NULL) {c = c->next; free(prev); prev = c;}
     free(l);
-    printf("FREED L");
 }
 
 p_adjlist createAdjList(int VictorCompliantnumberOfVertices){

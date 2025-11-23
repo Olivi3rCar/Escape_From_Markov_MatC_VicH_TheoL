@@ -43,13 +43,11 @@ p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
     return linkedVC;
 }
 
-
 p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
     // Instantiation and allocation of the p_link_array
-    p_link arrLLL = malloc(sizeof(t_link));
+    p_link arrLLL = malloc(100 * sizeof(t_link));
     p_link_array linkA = malloc(sizeof(t_link_array));
-    linkA->arr = arrLLL;
-    linkA->len = 0;
+    linkA->arr = arrLLL; linkA->len = 100; linkA->log_size = 0;
 
     p_class linkedVC = link_vertex_to_class(vertices, part);
     for (int i = 0; i < vertices.len; i++) {
@@ -61,7 +59,7 @@ p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
             // Curr is vertex j; Cj is linkedVC[j]
             t_class Cj = linkedVC[curr->arrival];
             int v = 1; int kk = 0;
-            while (kk < linkA->len && v) {
+            while (kk < linkA->log_size && v) {
                 // for each link in the p_link_array
                 // we check if the current link is already present
                 t_link currelt = linkA->arr[kk++];
@@ -71,9 +69,9 @@ p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
             }
             // if not already present, att link to linkarrayyyyyrfers
             if (v) {
-                linkA->arr[linkA->len].from = Ci.id;
-                linkA->arr[linkA->len].to = Cj.id;
-                linkA->len++;
+                linkA->arr[linkA->log_size].from = Ci.id;
+                linkA->arr[linkA->log_size].to = Cj.id;
+                linkA->log_size++;
             }
             curr = curr->next;
         }
@@ -184,21 +182,17 @@ void drawHasse(t_partition part, t_adjlist graph) {
     }
     fprintf(output, "\n");
 
-    printf("2");
     ///Linking the nodes
     p_link_array trLinks = createTransitiveLinks(graph, part);
-    //     removeTransitiveLinks(trLinks);
-    //     for (int i = 0; i < trLinks->len; i++){
-    //         fprintf(output, "%s->%s\n",getID(trLinks->arr[i].from),getID(trLinks->arr[i].to));
-    //         printf("huh ?\n%s->%s\n%d->%d\n",getID(trLinks->arr[i].from),getID(trLinks->arr[i].to),
-    //                trLinks->arr[i].from,trLinks->arr[i].to);
-    //     }
+    //removeTransitiveLinks(trLinks);
+    for (int i = 0; i < trLinks->log_size; i++){
+        fprintf(output, "%s-->",getID(trLinks->arr[i].from+1));
+//        printf("%s->",getID(trLinks->arr[i].from+1));
+        fprintf(output, "%s\n",getID(trLinks->arr[i].to+1));
+//        printf( "%s\n",getID(trLinks->arr[i].to+1));
+    }
 
-    printf("3");
-    //freeTransitiveLinks(trLinks);
-
-    printf("4");
-    //fclose(output);
+    fclose(output);
     printf("The file has been successfully output here: Escape_From_Markov_MatC_VicH_TheoL/data/dusk.txt\n");
 }
 
@@ -303,6 +297,8 @@ void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
               t_partition* partition, t_adjlist* adj_list, t_tarjan_list* tarjan_list, int * id) {
   vertex->number = * num;
 
+//  printf("num : %d", * num);
+
   vertex->access_number = *num;
 
   (*num)++;
@@ -311,10 +307,12 @@ void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
 
   vertex->in_stack_bool = 1;
 
+//  printf("\ninnit\n");
 
 
   p_cell curr = adj_list->listarray[vertex->id-1]->head;
   while(curr!=NULL){
+//    printf("Inside a while loop...\n");
     t_tarjan_vertex *w = &tarjan_list->vertices[curr->arrival-1];
     if (w->access_number == -1){
       parcours(w, num, stack, partition, adj_list, tarjan_list, id);
@@ -326,6 +324,7 @@ void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
     }
     curr=curr->next;
   }
+//  printf("Went through the while loop\n\n");
 
   if (vertex->access_number == vertex->number) {
     t_class *class = create_class(adj_list->len);
@@ -346,19 +345,23 @@ void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
       partition->classes[partition->l_len++] = class;
 
   }
+//  printf("Went through the if loop\n");
 }
 
-t_partition tarjan_algorithm(t_adjlist* adj_list){
+p_partition tarjan_algorithm(t_adjlist* adj_list){
   int num=0;
   int id=0;
   t_stack_tarjan * stack = create_empty_stack(adj_list->len);
-  t_partition * partition = create_partition(adj_list->len);
+  p_partition partition = create_partition(adj_list->len);
   t_tarjan_list * tarjan_list = create_filled_tarjan_list(adj_list);
+//  printf("Beginning parcours function run\n");
   for (int i = 0; i < adj_list->len; i++) {
     t_tarjan_vertex * vertex = &tarjan_list->vertices[i];
+//    printf("Run number : %d\n",i+1);
     if (vertex->access_number == -1) {
       parcours(vertex, &num, stack, partition, adj_list, tarjan_list, &id);
     }
   }
-  return *partition;
+//  printf("I'm ... done ???");
+  return partition;
 }
