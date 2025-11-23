@@ -14,10 +14,12 @@ int main() {
     displayAdjList(*new_adj);
     printf("\n");
 
+
     ///Validation of step 2
     printf("But is this matrix a Markov graph ? If not, why ?:\n");
     isMarkov(*new_adj);
     printf("\n");
+
 
     ///Validation of step 3
     printf("Fine, now, create a file to display it in Mermaid:\n");
@@ -39,6 +41,7 @@ int main() {
     //Validation of step 3
     p_link_array plink = createTransitiveLinks(*new_adj, *new_partition);
     graph_characteristics(*new_partition, *plink);
+    printf("\n\n");
 
 
 
