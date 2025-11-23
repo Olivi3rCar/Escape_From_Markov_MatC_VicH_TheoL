@@ -46,7 +46,7 @@ p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
 
 p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
     // Instantiation and allocation of the p_link_array
-    p_link arrLLL = malloc(567 * sizeof(t_link));
+    p_link arrLLL = malloc(100 * sizeof(t_link));
     p_link_array linkA = malloc(sizeof(p_link_array));
     linkA->arr = arrLLL; linkA->len = 0;
 
@@ -136,7 +136,6 @@ void removeTransitiveLinks(p_link_array linkArray)
 
 void freeTransitiveLinks(p_link_array linkArray){
     free(linkArray);
-    return;
 }
 
 void drawHasse(t_partition part, t_adjlist graph) {
@@ -146,7 +145,7 @@ void drawHasse(t_partition part, t_adjlist graph) {
          perror("Could not open/create the file for writing");
          exit(EXIT_FAILURE);
      }
-
+    printf("1");
      fprintf(output, "---\n"
                      "config:\n"
                      "    layout: elk\n"
@@ -161,15 +160,22 @@ void drawHasse(t_partition part, t_adjlist graph) {
      }
      fprintf(output, "\n");
 
+     printf("2");
      ///Linking the nodes
      p_link_array trLinks = createTransitiveLinks(graph, part);
-     removeTransitiveLinks(trLinks);
-     for (int i = 0; i < trLinks->len; i++){
-         fprintf(output, "%s->%s\n",getID(trLinks->arr[i].from),getID(trLinks->arr[i].to));
-     }
+//     removeTransitiveLinks(trLinks);
+//     for (int i = 0; i < trLinks->len; i++){
+//         fprintf(output, "%s->%s\n",getID(trLinks->arr[i].from),getID(trLinks->arr[i].to));
+//         printf("huh ?\n%s->%s\n%d->%d\n",getID(trLinks->arr[i].from),getID(trLinks->arr[i].to),
+//                trLinks->arr[i].from,trLinks->arr[i].to);
+//     }
 
+     printf("3");
+     freeTransitiveLinks(trLinks);
+
+     printf("4");
      fclose(output);
-     printf("The file has been successfully output here: Escape_From_Markov_MatC_VicH_TheoL/data/ariel.txt\n");
+     printf("The file has been successfully output here: Escape_From_Markov_MatC_VicH_TheoL/data/dusk.txt\n");
  }
 
 
@@ -332,11 +338,11 @@ void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
   printf("Went through the if loop\n");
 }
 
-t_partition tarjan_algorithm(t_adjlist* adj_list){
+p_partition tarjan_algorithm(t_adjlist* adj_list){
   int num=0;
   int id=0;
   t_stack_tarjan * stack = create_empty_stack(adj_list->len);
-  t_partition * partition = create_partition(adj_list->len);
+  p_partition partition = create_partition(adj_list->len);
   t_tarjan_list * tarjan_list = create_filled_tarjan_list(adj_list);
   printf("Beginning parcours function run\n");
   for (int i = 0; i < adj_list->len; i++) {
@@ -347,5 +353,5 @@ t_partition tarjan_algorithm(t_adjlist* adj_list){
     }
   }
   printf("I'm ... done ???");
-  return *partition;
+  return partition;
 }
