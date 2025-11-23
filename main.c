@@ -71,30 +71,30 @@ int main() {
     }
     printf("this is M^7 :\n");
     display_matrix(*mn);
-    free_matrix(mn);
+    // free_matrix(mn);
 
-    // min value of n for which m^n - m^n-1 <= 0.01
-    float epsilon = 1;
-    int n = 1;
-    mn = zero_matrix(thegmat->len);
-    copy_matrix(*thegmat, mn);
-    while (epsilon > 0.01) {
-        p_mat tocopythentofree = mult_matrix(*thegmat, *mn);
-        epsilon = diff_matrix(*tocopythentofree, *mn);
-        copy_matrix(*tocopythentofree, mn);
-        free_matrix(tocopythentofree);
-        n++;
-    }
-    printf("min value of n for which m^n - m^n-1 <= 0.01 :\n"
-           "n = %d; epsilon = %f\n", n, epsilon);
-
-    freeAdjList(test_adj);
+    // // min value of n for which m^n - m^n-1 <= 0.01
+    // float epsilon = 1;
+    // int n = 1;
+    // mn = zero_matrix(thegmat->len);
+    // copy_matrix(*thegmat, mn);
+    // while (epsilon > 0.01) {
+    //     p_mat tocopythentofree = mult_matrix(*thegmat, *mn);
+    //     epsilon = diff_matrix(*tocopythentofree, *mn);
+    //     copy_matrix(*tocopythentofree, mn);
+    //     free_matrix(tocopythentofree);
+    //     n++;
+    // }
+    // printf("min value of n for which m^n - m^n-1 <= 0.01 :\n"
+    //        "n = %d; epsilon = %f\n", n, epsilon);
+    //
+    // freeAdjList(test_adj);
 
 
     /// Test of the Part 2 of II
     /// creation of a Tarjan graph
 
-    t_partition new_partition = tarjan_algorithm(new_adj);
+
    //  p_link_array plink = createTransitiveLinks(*new_adj, new_partition);
    //  removeTransitiveLinks(plink);
    //  graph_characteristics(new_partition, *plink);
@@ -105,8 +105,12 @@ int main() {
 
 
     //TEST OF PART 2 III (théo)
+    //TESTSUBMAT.txt is litteraly the exemple of part 2 II
 
-    p_mat MATRIXO = subMatrix(*thegmat,new_partition,2);
+    p_adjlist new_adjlol = readGraph("../data/TESTSUBMAT.txt");
+    p_mat theMAT = create_matrix(*new_adjlol);
+    t_partition new_partition = tarjan_algorithm(new_adjlol);
+    p_mat MATRIXO = subMatrix(*theMAT,new_partition,2);
     display_matrix(*MATRIXO);
 
 
