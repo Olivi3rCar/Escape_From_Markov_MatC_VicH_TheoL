@@ -73,6 +73,12 @@ int main() {
     display_matrix(*mn);
     free_matrix(mn);
 
+    //TEST OF PART 2 III (théo)
+
+    p_partition partoche = tarjan_algorithm(new_adj);
+    p_mat MATRIXO = subMatrix(*thegmat,*partoche,2);
+    display_matrix(*MATRIXO);
+
     // min value of n for which m^n - m^n-1 <= 0.01
     float epsilon = 1;
     int n = 1;
@@ -94,8 +100,8 @@ int main() {
     /// Test of the Part 2 of II
     /// creation of a Tarjan graph
 
-    p_partition new_partition = tarjan_algorithm(new_adj);
-    drawHasse(*new_partition, *new_adj);
+    //p_partition new_partition = tarjan_algorithm(new_adj);
+    //drawHasse(*new_partition, *new_adj);
 //    displayAdjList(*new_adj);
 //    freeAdjList(new_adj);
 
