@@ -348,7 +348,7 @@ void parcours(t_tarjan_vertex * vertex, int *num, t_stack_tarjan* stack,
 //  printf("Went through the if loop\n");
 }
 
-t_partition tarjan_algorithm(t_adjlist* adj_list){
+p_partition tarjan_algorithm(t_adjlist* adj_list){
   int num=0;
   int id=0;
   t_stack_tarjan * stack = create_empty_stack(adj_list->len);

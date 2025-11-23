@@ -109,8 +109,8 @@ int main() {
 
     p_adjlist new_adjlol = readGraph("../data/TESTSUBMAT.txt");
     p_mat theMAT = create_matrix(*new_adjlol);
-    t_partition new_partition = tarjan_algorithm(new_adjlol);
-    p_mat MATRIXO = subMatrix(*theMAT,new_partition,2);
+    p_partition new_partition = tarjan_algorithm(new_adjlol);
+    p_mat MATRIXO = subMatrix(*theMAT,*new_partition,2);
     display_matrix(*MATRIXO);
 
 
