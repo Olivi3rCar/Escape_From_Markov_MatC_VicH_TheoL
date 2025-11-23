@@ -29,15 +29,15 @@ t_tarjan_list * create_filled_tarjan_list(const t_adjlist * adj_list){
 
 p_class link_vertex_to_class(t_adjlist vertices, t_partition part){
     // Allocate space for the linking array
-    p_class linkedVC = (p_class) malloc(vertices.len * sizeof(t_class) );
+    p_class linkedVC = (p_class) malloc(part.l_len * sizeof(t_class));
     for (int i = 0; i < part.l_len; i++) {
         // For each class in the partition
-        for (int j = 0; j < part.classes[i]->len; i++) {
+        for (int j = 0; j < part.classes[i]->len; j++) {
             // For each vertex in that class
             // We link the current vertex to the corresponding class
             // in the newly created array. (the index of the element of the array
             // corresponds to the id of the vertex)
-            linkedVC[part.classes[i][j].id] = *part.classes[i];
+            linkedVC[part.classes[i]->list->vertices[j].id] = *part.classes[i];
         }
     }
     return linkedVC;
@@ -62,7 +62,7 @@ p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
             while (kk < linkA->len && v) {
                 // for each link in the p_link_array
                 // we check if the current link is already present
-                t_link currelt = linkA->arr[kk];
+                t_link currelt = linkA->arr[kk++];
                 if (Ci.id==linkedVC[currelt.from].id && Cj.id==linkedVC[currelt.to].id) {
                     v = 0;
                 }
@@ -73,6 +73,7 @@ p_link_array createTransitiveLinks(t_adjlist vertices, t_partition part){
                 linkA->arr[linkA->len].to = Cj.id;
                 linkA->len++;
             }
+            curr = curr->next;
         }
     }
     return linkA;
@@ -129,48 +130,50 @@ void freeTransitiveLinks(p_link_array linkArray){
     return;
 }
 
-// void drawHasse(t_partition part) {
-//
-//     FILE *output = fopen("../data/dusk.txt", "w");
-//     if (!output) {
-//         perror("Could not open/create the file for writing");
-//         exit(EXIT_FAILURE);
-//     }
-//
-//     fprintf(output, "---\n"
-//                     "config:\n"
-//                     "    layout: elk\n"
-//                     "    theme: neo\n"
-//                     "    look: neo\n"
-//                     "---\n\n"
-//                     "flowchart LR\n");
-//
-//     ///Writing all the differents nodes
-//     for (int i = 0; i < part.l_len; i++) {
-//         fprintf(output, "%s[%s]\n",getID(i+1),part.classes[i]->id);
-//     }
-//     fprintf(output, "\n");
-//
-//     ///Linking the nodes
-//     //p_link_array trLinks = createTransitiveLinks();
-//     //removeTransitiveLinks(trLinks);
-//     //for (truc) {machin dans output}
-//
-//     fclose(output);
-//     printf("The file has been successfully outputed here: Escape_From_Markov_MatC_VicH_TheoL/data/ariel.txt\n");
-// }
+ void drawHasse(t_partition part, t_adjlist graph) {
+
+     FILE *output = fopen("../data/dusk.txt", "w");
+     if (!output) {
+         perror("Could not open/create the file for writing");
+         exit(EXIT_FAILURE);
+     }
+
+     fprintf(output, "---\n"
+                     "config:\n"
+                     "    layout: elk\n"
+                     "    theme: neo\n"
+                     "    look: neo\n"
+                     "---\n\n"
+                     "flowchart LR\n");
+
+     ///Writing all the differents nodes
+     for (int i = 0; i < part.l_len; i++) {
+         fprintf(output, "%s[%d]\n",getID(i+1),part.classes[i]->id);
+     }
+     fprintf(output, "\n");
+
+     ///Linking the nodes
+     p_link_array trLinks = createTransitiveLinks(graph, part);
+     removeTransitiveLinks(trLinks);
+     for (int i = 0; i < trLinks->len; i++){
+         fprintf(output, "%s->%s\n",getID(trLinks->arr[i].from),getID(trLinks->arr[i].to));
+     }
+
+     fclose(output);
+     printf("The file has been successfully output here: Escape_From_Markov_MatC_VicH_TheoL/data/ariel.txt\n");
+ }
 
 
 t_class * create_class(const int edge_size) {
-  t_class *new_class = malloc(sizeof *new_class);
+  t_class *new_class = (p_class)malloc(sizeof(t_class));
   if (!new_class) {
-    printf("Memory allocation failed in create_partition\n");
+    printf("Memory allocation failed in create_class\n");
     exit(1);
   }
 
-  new_class->list = malloc(sizeof *new_class->list);
+  new_class->list = malloc(sizeof(t_tarjan_list));
   if (!new_class->list) {
-    printf("Memory allocation failed in create_partition\n");
+    printf("Memory allocation failed in create_class\n");
     free(new_class);
     exit(1);
   }
@@ -337,49 +340,3 @@ t_partition tarjan_algorithm(t_adjlist* adj_list){
   printf("I'm ... done ???");
   return *partition;
 }
-
-//void removeTransitiveLinks(t_link_array *p_link_array)
-//{
-//    int i = 0;
-//    while (i < p_link_array->log_size)
-//    {
-//        t_link link1 = p_link_array->links[i];
-//        int j = 0;
-//        int to_remove = 0;
-//        while (j < p_link_array->log_size && !to_remove)
-//        {
-//            if (j != i)
-//            {
-//                t_link link2 = p_link_array->links[j];
-//                if (link1.from == link2.from)
-//                {
-//                    // look for a link from link2.to to link1.to
-//                    int k = 0;
-//                    while (k < p_link_array->log_size && !to_remove)
-//                    {
-//                        if (k != j && k != i)
-//                        {
-//                            t_link link3 = p_link_array->links[k];
-//                            if ((link3.from == link2.to) && (link3.to == link1.to))
-//                            {
-//                                to_remove = 1;
-//                            }
-//                        }
-//                        k++;
-//                    }
-//                }
-//            }
-//            j++;
-//        }
-//        if (to_remove)
-//        {
-//            // remove link1 by replacing it with the last link
-//            p_link_array->links[i] = p_link_array->links[p_link_array->log_size - 1];
-//            p_link_array->log_size--;
-//        }
-//        else
-//        {
-//            i++;
-//        }
-//    }
-//}

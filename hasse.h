@@ -26,7 +26,7 @@ typedef struct s_class{
 } t_class, * p_class;
 
 typedef struct s_partition{
-  t_class ** classes;
+  p_class * classes;
   int p_len;
   int l_len;
 } t_partition, * p_partition;
@@ -83,6 +83,6 @@ void freeTransitiveLinks(p_link_array linkArray);
 /// Current graph present in a txt file
 /// into another txt file (dusk.txt)
 /// \param part Partition of a Markov graph
-void drawHasse(t_partition part);
+void drawHasse(t_partition part, t_adjlist graph);
 
 #endif
